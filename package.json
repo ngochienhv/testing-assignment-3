@@ -1,0 +1,39 @@
+{
+  "name": "software-testing-ass3",
+  "version": "1.0.0",
+  "description": "Software testing assignment 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests --reporter=mocha-multi-reporters"
+  },
+  "keywords": [
+    "selenium",
+    "javascript",
+    "mocha"
+  ],
+  "type": "module",
+  "dependencies": {
+    "@octokit/auth-basic": "^1.4.8",
+    "@octokit/rest": "^19.0.5",
+    "add-to-path": "^1.1.2",
+    "chai": "^4.1.2",
+    "chalk": "^5.2.0",
+    "clear": "^0.1.0",
+    "clui": "^0.3.6",
+    "configstore": "^6.0.0",
+    "dotenv": "^4.0.0",
+    "figlet": "^1.5.2",
+    "inquirer": "^9.1.4",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.7",
+    "mocha": "^10.2.0",
+    "puppeteer": "^19.4.0",
+    "selenium-webdriver": "^4.7.0",
+    "simple-git": "^3.15.1",
+    "touch": "^3.1.0"
+  },
+  "devDependencies": {
+    "mocha-junit-reporter": "^1.15.0",
+    "mocha-multi-reporters": "^1.1.6"
+  }
+}
