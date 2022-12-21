@@ -26,6 +26,14 @@ const login = async (driver, credential) => {
   await tasks.clickElement('id', 'loginbtn');
 }
 
+const logout = async (driver) => {
+  const tasks = new DriverTasks(driver);
+
+  driver.executeScript(`document.getElementById('user-action-menu').classList.add('show')`);
+  await tasks.clickElement('xpath', '//a[contains(@href, "/login/logout")]');
+  await driver.sleep(2000);
+}
+
 describe('Test Suite - To start the test, we will need your Moodle Admin account for setup step, please enter your Admin credential', function () {
   let driver;
   let adminCredentials;
@@ -49,11 +57,7 @@ describe('Test Suite - To start the test, we will need your Moodle Admin account
         await createCourse(driver, course.fullName, course.shortName, course.time);
       }
     })();
-    return driver.quit();
-  });
-
-  beforeEach(async () => {
-    driverConfig();
+    await logout(driver);
     const userCredentials = {
       username: process.env.TEST_USER_USERNAME,
       password: process.env.TEST_USER_PASSWORD,
@@ -61,12 +65,8 @@ describe('Test Suite - To start the test, we will need your Moodle Admin account
     return login(driver, userCredentials);
   });
 
-  afterEach(() => {
-    return driver.quit();
-  });
-
   after(async () => {
-    driverConfig();
+    await logout(driver);
     await login(driver, adminCredentials);
     await deleteUser(driver);
     await deleteCourse(driver);

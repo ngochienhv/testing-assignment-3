@@ -15,23 +15,6 @@ export const getDriverConfig = function (browser) {
 };
 
 let browsers = {
-  headlessChrome: {
-    driverConfig: function () {
-      const options = new chrome.Options();
-      options.addArguments("--headless");
-      options.addArguments("--disable-gpu");
-      options.addArguments("--incognito");
-      options.addArguments("--start-maximized");
-      options.addArguments("--disable-logging");
-      options.addArguments("--disable-in-process-stack-traces");
-      options.setChromeBinaryPath(puppeteer.executablePath());
-      const driver = new webdriver.Builder().
-        forBrowser("chrome").setChromeOptions(options).
-        build();
-
-      return driver;
-    }
-  },
   chrome: {
     driverConfig: function () {
       const options = new chrome.Options();

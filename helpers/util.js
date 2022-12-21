@@ -1,8 +1,7 @@
 import { By, until } from 'selenium-webdriver';
 
 export default class DriverTasks {
-  constructor(driver, method) {
-    this.method = method ? method : 'css';
+  constructor(driver) {
     this.driver = driver;
   }
   changeMethod(method) {

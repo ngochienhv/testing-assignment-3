@@ -1,10 +1,10 @@
 import DriverTasks from "../helpers/util.js";
-import { By, until } from 'selenium-webdriver';
+import { By, until, Key } from 'selenium-webdriver';
 
 const usecaseTest = async (driver, fileName) => {
   const tasks = new DriverTasks(driver);
   const isCorrectFileType = fileName.split('.')[1] === "ics";
-
+  let resMessage;
   await tasks.clickElement('xpath', '//a[@href="http://localhost/my/"]');
   await driver.wait(until.urlIs("http://localhost/my/"), 2000);
   await tasks.clickElement('xpath', '//a[@href="http://localhost/calendar/managesubscriptions.php"]');
@@ -20,13 +20,17 @@ const usecaseTest = async (driver, fileName) => {
   if (isCorrectFileType) {
     await tasks.clickElement('id', 'id_add');
     await driver.wait(until.urlIs('http://localhost/calendar/managesubscriptions.php'));
-    return 'Correct file type';
+    resMessage = 'Correct file type';
   } else {
     await driver.sleep(2000);
     const error = await tasks.findElement('css', 'div.moodle-exception-message');
     let message = await error.getText();
-    return message;
+    resMessage = message;
+    await driver.get(process.env.TEST_BASE_URL);
+    let alert = await driver.switchTo().alert();
+    await alert.accept();
   }
+  return resMessage;
 }
 
 export default usecaseTest;

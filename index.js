@@ -29,4 +29,4 @@ console.log(
 
 export const browser = process.env.MOCHA_BROWSER || 'chrome';
 
-export const base_url = process.env.TEST_BASE_URL || 'https://google.com';
+export const base_url = process.env.TEST_BASE_URL || 'http://localhost';

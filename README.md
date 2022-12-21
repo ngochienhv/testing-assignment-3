@@ -23,7 +23,7 @@ $ npm install
 4. Run the following command to run the test:
 
 ```
-$ npm run test
+$ npm test
 ```
 
 5. After run the above command, please enter Moodle Admin credentials. The test require local Moodle Admin account which is created during the installation.
